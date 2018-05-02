@@ -113,7 +113,7 @@ contract ChefToken is Ownable, ChefTokenInterface {
 
     function _transfer(address _from, address _to, uint256 _value) internal {
         require(_to != address(0));
-	      require(balanceOf[_from] >= _value); 
+	require(balanceOf[_from] >= _value); 
         uint256 previousBalances = balanceOf[_from].add(balanceOf[_to]); 
         balanceOf[_from] = balanceOf[_from].sub(_value); 
         balanceOf[_to] = balanceOf[_to].add(_value); 
@@ -144,7 +144,7 @@ contract ChefToken is Ownable, ChefTokenInterface {
 
     function approve(address _spender, uint256 _value) public returns (bool success) {
         allowance[msg.sender][_spender] = _value;
-	      emit Approval(msg.sender, _spender, _value);
+	emit Approval(msg.sender, _spender, _value);
         return true;
     }
 	
@@ -159,7 +159,7 @@ contract ChefToken is Ownable, ChefTokenInterface {
 
     function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool success) {
         tokenRecipient spender = tokenRecipient(_spender);
-	      if (approve(_spender, _value)) {
+	if (approve(_spender, _value)) {
             spender.receiveApproval(msg.sender, _value, this, _extraData);
             return true;
         }
