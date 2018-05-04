@@ -1,9 +1,11 @@
 /*
 Besides the standard ERC20 token functions, ChefToken smart contract has the following functions implemented:
 - servicePaymentWithCharityPercentage:
-    After the client and service provider agree on a service and it's fee, the fee is transfered to the CookUp smart contract address
+    After the client and service provider agree on a service and it's price, the agreed amount is transfered to the CookUp smart contract address
     to ensure that the service provider will be paid. Once the service has been completed, the CookUp application calls this function, 
-    which then calculates and transfers the required percentages of the fee to the service provider, as well as to charity organization.
+    which then calculates the appropriate percentages of the price for each involved party: the service provider, CookUp and the charity organization.
+    CookUp's percentage is determined by the variable cookUpFee, while the charity's percentage is determined by the variable charityDonation.
+    These two fees are substracted from the total service price, and the remaining amount is sent to the service provider.
     The funds that will be sent to charity organization are first stored at a temporary address.
 - releaseAdvisorsTeamTokens:
     This function is used to transfer CHEF tokens reserved for CookUp partners and advisors to a temporary address every month, 
