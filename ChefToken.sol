@@ -1,5 +1,5 @@
 /*
-Besides standard token functions, ChefToken smart contract has the following functions implemented:
+Besides the standard ERC20 token functions, ChefToken smart contract has the following functions implemented:
 - servicePaymentWithCharityPercentage:
     After the client and service provider agree on a service and it's fee, the fee is transfered to the CookUp smart contract address
     to ensure that the service provider will be paid. Once the service has been completed, the CookUp application calls this function, 
@@ -86,19 +86,19 @@ contract ChefToken is Ownable, ChefTokenInterface {
     
     
     function ChefToken () public {
-    totalSupply = 630*(10**6)*(10**18);   
-    balanceOf[msg.sender] = totalSupply;  
-    name = "CHEF";                  
-    symbol = "CHEF";
+        totalSupply = 630*(10**6)*(10**18);   
+        balanceOf[msg.sender] = totalSupply;  
+        name = "CHEF";                  
+        symbol = "CHEF";
     
-    tempCharity = address(0);
-    tempAdvisorsTeam = address(0);
-    tokensReleasedAdvisorsTeam = 0;
-    initialReleaseDate = 1530396000;
-    releaseSum = 1575*(10**5)*(10**18);
-    cookUpFee = 7;
-    charityDonation=3;
-	  }
+        tempCharity = address(0);
+        tempAdvisorsTeam = address(0);
+        tokensReleasedAdvisorsTeam = 0;
+        initialReleaseDate = 1530396000;
+        releaseSum = 1575*(10**5)*(10**18);
+        cookUpFee = 7;
+        charityDonation=3;
+    }
 
 
     function totalSupply() public view returns (uint256 supply) {
@@ -113,7 +113,7 @@ contract ChefToken is Ownable, ChefTokenInterface {
 
     function _transfer(address _from, address _to, uint256 _value) internal {
         require(_to != address(0));
-	require(balanceOf[_from] >= _value); 
+        require(balanceOf[_from] >= _value); 
         uint256 previousBalances = balanceOf[_from].add(balanceOf[_to]); 
         balanceOf[_from] = balanceOf[_from].sub(_value); 
         balanceOf[_to] = balanceOf[_to].add(_value); 
@@ -144,7 +144,7 @@ contract ChefToken is Ownable, ChefTokenInterface {
 
     function approve(address _spender, uint256 _value) public returns (bool success) {
         allowance[msg.sender][_spender] = _value;
-	emit Approval(msg.sender, _spender, _value);
+        emit Approval(msg.sender, _spender, _value);
         return true;
     }
 	
@@ -159,7 +159,7 @@ contract ChefToken is Ownable, ChefTokenInterface {
 
     function approveAndCall(address _spender, uint256 _value, bytes _extraData) public returns (bool success) {
         tokenRecipient spender = tokenRecipient(_spender);
-	if (approve(_spender, _value)) {
+        if (approve(_spender, _value)) {
             spender.receiveApproval(msg.sender, _value, this, _extraData);
             return true;
         }
