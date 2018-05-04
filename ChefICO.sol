@@ -65,7 +65,7 @@ contract ChefICO {
     function ChefICO() public {
         softCap = 7000 * 1 ether;
         hardCap = 22500 * 1 ether;
-        totalAmount = 0;
+        totalAmount = 1100 * 1 ether; //Private presale funds
         chefPrice = 0.0001 * 1 ether;
         minimumInvestment = 1 ether / 5;
         maximumInvestment = 250 * 1 ether;
